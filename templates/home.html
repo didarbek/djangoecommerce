@@ -3,7 +3,12 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<div class="container mt-2">
+<div class="text-center" >
+    <div class="col-12 pb-4">
+      <input type="text" style="width: 700px; height: 40px; padding: 5px;" placeholder="Search for your products" class="border border-muted">
+      <button style="padding: 7px; width: 80px; border: 1px solid rgb(38, 165, 33); background-color: rgb(38, 165, 33); color: white;">search</button>
+    </div>
+  </div>
 <!-- slideshow -->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -39,45 +44,78 @@
 
 
 <!-- cards -->
-<div class="row pt-4 m-2">
-    <div class="card m-2" style="width: 18rem;">
+<div class="row row-cols-1 row-cols-md-4 m-2 justify-content-center">
+    <div class="col mb-4">
+      <div class="card h-100">
         <img src="{% static 'img/slide-04.jpg' %}" class="card-img-top" alt="...">
         <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
+      </div>
     </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="{% static 'img/slide-05.jpg' %}" class="card-img-top" alt="...">
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="{% static 'img/slide-01.jpg' %}" class="card-img-top" alt="slide-1">
         <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a short card.</p>
         </div>
+      </div>
     </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="{% static 'img/slide-06.jpg' %}" class="card-img-top" alt="...">
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="{% static 'img/slide-02.jpg' %}" class="card-img-top" alt="slide-2">
         <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
         </div>
+      </div>
     </div>
-</div>
-<div class="row pt-4 m-2">
-    <div class="card m-2" style="width: 18rem;">
-        <img src="{% static 'img/thumb-01.jpg' %}" class="card-img-top" alt="...">
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="{% static 'img/slide-03.jpg' %}" class="card-img-top" alt="slide-3">
         <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
+      </div>
     </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="{% static 'img/thumb-02.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="col mb-4">
+        <div class="card h-100">
+          <img src="{% static 'img/slide-03.jpg' %}" class="card-img-top" alt="slide-3">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
         </div>
-    </div>
-    <div class="card m-2" style="width: 18rem;">
-        <img src="{% static 'img/thumb-03.jpg' %}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="{% static 'img/slide-03.jpg' %}" class="card-img-top" alt="slide-3">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
         </div>
-    </div>
-</div>
-</div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="{% static 'img/slide-03.jpg' %}" class="card-img-top" alt="slide-3">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="{% static 'img/slide-03.jpg' %}" class="card-img-top" alt="slide-3">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </div>
+  </div>
 {% endblock content %}
