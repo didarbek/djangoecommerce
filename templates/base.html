@@ -8,6 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .asteriskField {
+            display: none;
+        }
+        </style>
     {% block extra_links %}
     {% endblock extra_links %}
 </head>
@@ -24,32 +29,34 @@
     {% endblock extra_scripts %}
 
         <!-- Footer -->
-        <footer class=" bg-dark pt-4">
+        <footer class=" pt-4 border border-top" style="background-color:#f7f5f5;">
             <div class="container-fluid text-center text-md-left">
               <div class="row">
                 <div class="col-md-4 mt-md-0 mt-3">
-                  <h5 class="text-uppercase text-white">about</h5>
-                  <p class="text-white pt-4"><a href="" class="text-white">Our company</a></p>
-                  <p class="text-white"><a href="#" class="text-white">About us</a></p>
-                  <p class="text-white"><a href="#" class="text-white">Our team</a></p>
+                  <h5 class="text-uppercase ">about</h5>
+                  <div >
+                    <p class="pt-4" ><a href="" style="color: #5e5e5e;" >Our company</a></p>
+                    <p><a href="#" style="color: #5e5e5e;">About us</a></p>
+                    <p><a href="#" style="color: #5e5e5e;">Our team</a></p>
+                  </div>
                 </div>
                 <div class="col-md-4 mt-md-0 mt-3">
-                    <h5 class="text-uppercase text-white"><a href="#" class="text-white">contact</a></h5>
-                    <p class="text-white pt-4 "><a href="http://" class="text-white">Facebook</a></p>
-                    <p class="text-white"><a href="http://" class="text-white">Twitter</a></p>
-                    <p class="text-white"><a href="http://" class="text-white">Instegram</a></p>
+                    <h5 class="text-uppercase">contact</h5>
+                    <p class='pt-4' ><a href="http://" style="color: #5e5e5e;">Facebook</a></p>
+                    <p><a href="http://" style="color: #5e5e5e;">Twitter</a></p>
+                    <p><a href="http://" style="color: #5e5e5e;">Instegram</a></p>
                 </div>
                 <div class="col-md-4 mt-md-0 mt-3">
-                    <h5 class="text-uppercase text-white">subscribe us</h5>
-                    <div class="pt-4">
-                        <input type="text" ">
-                        <button type="submit" class="btn btn-primary">subscribe</button>
+                    <h5 class="text-uppercase ">subscribe us</h5>
+                    <div class="pt-4 row">
+                        <input type="text" class="form-control form-control-sm col-6 m-3" >
+                        <button type="submit" class="btn btn-primary btn-sm col-3 m-3">subscribe</button>
                     </div>
                 </div>
              </div>
             </div>
             <div class="text-center p-3">
-                <span class="text-white">© 2020 Copyright:</span> 
+                <span>© 2020 Copyright:</span> 
                 <a href="#" class="text-primary">DNMK</a>
             </div>
         </footer>   
