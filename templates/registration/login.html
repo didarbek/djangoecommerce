@@ -5,6 +5,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
 <div class="container mt-3 mb-3">
   <h2>Login</h2>
   <form method="post">
@@ -13,4 +14,19 @@
     <button class="btn btn-primary" type="submit">Login</button>
   </form>
 </div>
+=======
+
+<div class="row justify-content-center m-4">
+  <div class="col-5">
+    <h2 class="pb-2 text-center">Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+  </div>
+  
+</div>
+
+>>>>>>> footer
 {% endblock %}
