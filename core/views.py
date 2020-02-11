@@ -10,3 +10,6 @@ def product_page(request):
 
 def cart(request):
     return render(request,'cart.html')
+
+def profile(request):
+    return render(request,'profile.html')
