@@ -40,16 +40,15 @@
         <li class="nav-item">
           <a class="nav-link" href=""><b> Sale</b></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'core:cart' %}"><i class="fas fa-shopping-cart"></i></a>
+        </li>
         </ul>
         </div>
 
     {% if user.is_authenticated %}
-      <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
       <a class="nav-link disabled" href="#">Username: {{ user.username }}</a>
-       <a  class="nav-link waves-effect" href="">
-              <i class="fas fa-shopping-cart"></i>
-              Cart
-            </a>
+      <a class="nav-link text-secondary" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
     {% else %}
       <a class="nav-link text-secondary" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
       <a class="nav-link text-secondary" href="{% url 'accounts:signup' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
