@@ -29,7 +29,7 @@ class Item(models.Model):
     image = models.ImageField(null=True)
     published_on = models.DateTimeField(auto_now_add=True)
 
-     def __str__(self):
+    def __str__(self):
             return self.title
 
     def get_absolute_url(self):
@@ -68,7 +68,7 @@ class OrderItem(models.Model):
         return self.get_total_item_price() - self.get_total_discount_item_price()
 
     def __str__(self):
-        return F"{self.quantity} of {self.item.title}"
+        return f"{self.quantity} of {self.item.title}"
 
 class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
