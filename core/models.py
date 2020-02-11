@@ -28,3 +28,113 @@ class Item(models.Model):
     description = models.TextField()
     image = models.ImageField(null=True)
     published_on = models.DateTimeField(auto_now_add=True)
+
+     def __str__(self):
+            return self.title
+
+    def get_absolute_url(self):
+        return reverse("core:product_detail",kwargs={
+            'pk':self.pk
+        })
+
+    def get_add_to_cart_url(self):
+        return reverse("core:add-to-cart", kwargs={
+            'slug': self.slug
+        })
+
+    def get_remove_from_cart_url(self):
+        return reverse("core:remove_from_cart", kwargs={
+            'slug': self.slug
+        })
+
+class OrderItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ordered = models.BooleanField(default=False)
+    item = models.ForeignKey(Item,on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def get_total_discount_item_price(self):
+        return self.quantity * self.item.discount_price
+
+    def get_total_item_price(self):
+        return self.quantity * self.item.price
+
+    def get_final_price(self):
+        if self.item.discount_price:
+            return self.get_total_discount_item_price()
+        return self.get_total_item_price()
+
+    def get_amount_saved(self):
+        return self.get_total_item_price() - self.get_total_discount_item_price()
+
+    def __str__(self):
+        return F"{self.quantity} of {self.item.title}"
+
+class Order(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderItem)
+    ordered = models.BooleanField(default=False)
+    start_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField()
+    shipping_address = models.ForeignKey('Address',related_name='shipping_address',on_delete=models.SET_NULL,blank=True,null=True)
+    payment = models.ForeignKey('Payment',on_delete=models.SET_NULL,blank=True,null=True)
+    being_delivered = models.BooleanField(default=False)
+    received = models.BooleanField(default=False)
+
+    def get_total(self):
+        total = 0
+        for order_item in self.items.all():
+            total += order_item.get_final_price()
+        return total
+
+    def __str__(self):
+        return self.user.username
+
+class Address(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    street_address = models.CharField(max_length=100)
+    apartment_address = models.CharField(max_length=100)
+    country = CountryField(multiple=False)
+    zip = models.CharField(max_length=100)
+    default = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name_plural = 'addresses'
+
+class Payment(models.Model):
+    stripe_charge_id = models.CharField(max_length=50)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.SET_NULL,blank=True,null=True)
+    amount = models.FloatField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
+
+class Comment(models.Model):
+    item = models.ForeignKey(Item,on_delete=models.CASCADE,related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body,self.name)
+
+class Carousel(models.Model):
+    title = models.CharField(verbose_name=_('title'), max_length=100)
+    text = models.CharField(verbose_name=_('text'), max_length=200)
+    image = models.FileField(verbose_name=_('image'), upload_to='img/carousel/')
+
+    class Meta:
+        verbose_name = _('slide')
+        verbose_name_plural = _('slides')
+
+    def __str__(self):
+        return self.title
