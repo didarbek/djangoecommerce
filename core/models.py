@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.shortcuts import reverse
+from django_countries.fields import CountryField
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
@@ -29,7 +31,7 @@ class Item(models.Model):
     image = models.ImageField(null=True)
     published_on = models.DateTimeField(auto_now_add=True)
 
-     def __str__(self):
+    def __str__(self):
             return self.title
 
     def get_absolute_url(self):
