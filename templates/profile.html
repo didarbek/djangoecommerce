@@ -39,6 +39,11 @@
                                 {% else %}
                                 <b>None</b>
                                 {% endif %}</h5>
+                            <h5>Gender: {% if user.profile.gender %}
+                                {{ user.profile.gender }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
                             <h5>Country: {% if user.profile.country %}
                                 {{ user.profile.country }}
                                 {% else %}
@@ -56,6 +61,11 @@
                                 {% endif %}</h5>
                             <h5>Website: {% if user.profile.website %}
                                 {{ user.profile.website }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
+                            <h5>Email: {% if user.profile.email %}
+                                {{ user.profile.email }}
                                 {% else %}
                                 <b>None</b>
                                 {% endif %}</h5>

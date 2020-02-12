@@ -9,6 +9,12 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 
+CHOICES = (
+    ("None","None"),
+    ("Male","Male"),
+    ("Female","Female")
+)
+
 class Category(models.Model):
     name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250,unique=True)
@@ -154,6 +160,7 @@ class Profile(models.Model):
     organization = models.CharField(max_length=100, default='', blank=True)
     phone = models.CharField(max_length=20, blank=True, default='')
     avatar = models.ImageField(null=True,blank=True)
+    gender = models.CharField(max_length=20,choices=CHOICES,default='None')
 
     def __str__(self):
         return self.user.username

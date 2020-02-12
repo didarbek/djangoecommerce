@@ -16,6 +16,7 @@
     <form method="post" class="col-6">
       {% csrf_token %}
       {{ form|crispy }}
+      {{ p_reg_form|crispy }}
       <button class="btn btn-primary" type="submit">Sign Up</button>
     </form>
   </div>

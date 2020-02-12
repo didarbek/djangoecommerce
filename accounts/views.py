@@ -5,23 +5,32 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm,ProfileRegistrationForm
+from core.models import Profile
+from django.contrib import messages
 
 # Create your views here.
 
-def signup(request):
+def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            auth_login(request, user)
-            return redirect('home')
+        p_reg_form = ProfileRegistrationForm(request.POST)
+        if form.is_valid() and p_reg_form.is_valid():
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            p_reg_form = ProfileRegistrationForm(request.POST, instance=user.profile)
+            p_reg_form.full_clean()
+            p_reg_form.save()
+            messages.success(request, f'Your account has been sent for approval!')
+            return redirect('accounts:login')
     else:
         form = UserRegistrationForm()
-    return render(request, 'registration/signup.html', {'form': form})
+        p_reg_form = ProfileRegistrationForm()
+        context = {
+        'form': form,
+        'p_reg_form': p_reg_form
+        }
+    return render(request, 'registration/signup.html', context)
 
 def logout(request):
     auth_logout(request)
