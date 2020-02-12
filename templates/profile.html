@@ -8,71 +8,57 @@
 <div class="container">
     <div class="row my-2">
         <div class="col-lg-8 order-lg-2">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
-                </li>
-            </ul>
             <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">User Profile</h5>
+                <a class="btn btn-primary btn-sm float-right" href="{% url 'core:account_update' %}">Edit profile</a>
+                    <h4 class="mb-3"><b>User Profile</b></h4>
                     <div class="row">
                         <div class="col-md-6">
-                            <h6>About</h6>
-                            <p>
-                                Web Designer, UI/UX Engineer
-                            </p>
-                            <h6>Hobbies</h6>
-                            <p>
-                                Indie music, skiing and hiking. I love the great outdoors.
-                            </p>
-                        </div>
-                        <div class="col-md-6">
-                            <h6>Recent badges</h6>
-                            <a href="#" class="badge badge-dark badge-pill">html5</a>
-                            <a href="#" class="badge badge-dark badge-pill">react</a>
-                            <a href="#" class="badge badge-dark badge-pill">codeply</a>
-                            <a href="#" class="badge badge-dark badge-pill">angularjs</a>
-                            <a href="#" class="badge badge-dark badge-pill">css3</a>
-                            <a href="#" class="badge badge-dark badge-pill">jquery</a>
-                            <a href="#" class="badge badge-dark badge-pill">bootstrap</a>
-                            <a href="#" class="badge badge-dark badge-pill">responsive-design</a>
-                            <hr>
-                            <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>
-                            <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
-                            <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>
-                        </div>
-                        <div class="col-md-12">
-                            <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent Activity</h5>
-                            <table class="table table-sm table-hover table-striped">
-                                <tbody>                                    
-                                    <tr>
-                                        <td>
-                                            <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <h5>Bio: {% if user.profile.bio %}
+                                {{ user.profile.bio }}
+                                {% else %}
+                                <b>Bio is empty</b>
+                                {% endif %}</h5>
+                            <h5>First name: {% if user.profile.first_name %}
+                                {{ user.profile.first_name }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
+                            <h5>Last name: {% if user.profile.last_name %}
+                                {{ user.profile.last_name }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
+                            <h5>Birth date: {% if user.profile.birth_date %}
+                                {{ user.profile.birth_date }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
+                            <h5>Phone: {% if user.profile.phone %}
+                                {{ user.profile.phone }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
+                            <h5>Country: {% if user.profile.country %}
+                                {{ user.profile.country }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
+                            <h5>City: {% if user.profile.city %}
+                                {{ user.profile.city }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
+                            <h5>Organization: {% if user.profile.organization %}
+                                {{ user.profile.organization }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
+                            <h5>Website: {% if user.profile.website %}
+                                {{ user.profile.website }}
+                                {% else %}
+                                <b>None</b>
+                                {% endif %}</h5>
                         </div>
                     </div>
                     <!--/row-->
@@ -80,7 +66,11 @@
             </div>
         </div>
         <div class="col-lg-4 order-lg-1 text-center">
+            {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            {% else %}
             <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            {% endif %}
         </div>
     </div>
 </div>

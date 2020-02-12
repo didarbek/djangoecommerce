@@ -153,7 +153,7 @@ class Profile(models.Model):
     country = models.CharField(max_length=100, default='', blank=True)
     organization = models.CharField(max_length=100, default='', blank=True)
     phone = models.CharField(max_length=20, blank=True, default='')
-    avatar = models.ImageField(null=True,blank=True) 
+    avatar = models.ImageField(null=True,blank=True)
 
     def __str__(self):
         return self.user.username
