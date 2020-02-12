@@ -19,13 +19,13 @@
                                 {% else %}
                                 <b>Bio is empty</b>
                                 {% endif %}</h5>
-                            <h5>First name: {% if user.profile.first_name %}
-                                {{ user.profile.first_name }}
+                            <h5>First name: {% if user.first_name %}
+                                {{ user.first_name }}
                                 {% else %}
                                 <b>None</b>
                                 {% endif %}</h5>
-                            <h5>Last name: {% if user.profile.last_name %}
-                                {{ user.profile.last_name }}
+                            <h5>Last name: {% if user.last_name %}
+                                {{ user.last_name }}
                                 {% else %}
                                 <b>None</b>
                                 {% endif %}</h5>
@@ -64,8 +64,8 @@
                                 {% else %}
                                 <b>None</b>
                                 {% endif %}</h5>
-                            <h5>Email: {% if user.profile.email %}
-                                {{ user.profile.email }}
+                            <h5>Email: {% if user.email %}
+                                {{ user.email }}
                                 {% else %}
                                 <b>None</b>
                                 {% endif %}</h5>
