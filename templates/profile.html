@@ -79,7 +79,7 @@
             {% if user.profile.avatar %}
             <img src="{{ user.profile.avatar.url }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
             {% else %}
-            <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            <img src="{% static 'img/default.png' %}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
             {% endif %}
         </div>
     </div>
