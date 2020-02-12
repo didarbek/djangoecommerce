@@ -31,24 +31,3 @@ def register(request):
         'p_reg_form': p_reg_form
         }
     return render(request, 'registration/signup.html', context)
-
-def logout(request):
-    auth_logout(request)
-    return redirect('/')
-
-def login(request):
-    if request.user.is_authenticated:
-        return render(request, 'homepage.html')
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            auth_login(request, user)
-            return redirect('/')
-        else:
-            form = AuthenticationForm(request.POST)
-            return render(request, 'registration/login.html', {'form': form})
-    else:
-        form = AuthenticationForm()
-        return render(request, 'registration/login.html', {'form': form})
