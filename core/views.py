@@ -3,12 +3,10 @@ from django.db import transaction
 from .forms import UserForm,ProfileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from .models import Item,Profile
+from django.views.generic import ListView
 
 # Create your views here.
-
-def home(request):
-    return render(request,'home.html')
 
 def product_page(request):
     return render(request,'product-page.html')
@@ -18,6 +16,16 @@ def cart(request):
 
 def profile(request):
     return render(request,'profile.html')
+
+class ItemList(ListView):
+    model = Item
+    paginate_by = 10
+    template_name = 'home.html'
+
+    # def get_context_data(self,**kwargs):
+    #     context = super(ItemList,self).get_context_data(**kwargs)
+    #     context['slides'] = Carousel.objects.all()
+    #     return context
 
 @login_required
 @transaction.atomic

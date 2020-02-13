@@ -37,6 +37,7 @@ class Item(models.Model):
     discount_price = models.FloatField(blank=True, null=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     description = models.TextField()
+    short_description = models.CharField(max_length=100,blank=True,null=True)
     image = models.ImageField(null=True)
     published_on = models.DateTimeField(auto_now_add=True)
 
