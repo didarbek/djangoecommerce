@@ -3,10 +3,14 @@ from django.db import transaction
 from .forms import UserForm,ProfileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Item,Profile
+from .models import Item,Profile,Category
 from django.views.generic import ListView
+from django.db.models import Q, Count
 
 # Create your views here.
+
+def is_valid_queryparam(param):
+    return param != '' and param is not None
 
 def product_page(request):
     return render(request,'product-page.html')
@@ -48,3 +52,33 @@ def update_profile(request):
         'user_form': user_form,
         'profile_form': profile_form
     })
+
+def filter(request):
+    qs = Item.objects.all()
+    categories = Category.objects.all()
+    title_contains_query = request.GET.get('title_contains')
+    price_min = request.GET.get('price_min')
+    price_max = request.GET.get('price_max')
+    category = request.GET.get('category')
+
+    if is_valid_queryparam(title_contains_query):
+        qs = qs.filter(title__icontains=title_contains_query)
+
+    if is_valid_queryparam(price_min):
+        qs = qs.filter(price__gte=price_min)
+
+    if is_valid_queryparam(price_max):
+        qs = qs.filter(price__lt=price_max)
+
+    if is_valid_queryparam(category) and category != 'Choose...':
+        qs = qs.filter(category__name=category)
+
+    return qs
+
+def FilterView(request):
+    qs = filter(request)
+    context = {
+        'queryset': qs,
+        'categories': Category.objects.all()
+    }
+    return render(request, "filter_search.html", context)
