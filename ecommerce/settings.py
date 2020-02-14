@@ -27,22 +27,23 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-# Application definition
+#Application definition
 
 INSTALLED_APPS = [
+    'accounts',
+    'crispy_forms',
+    'core',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
-    'crispy_forms',
-    'core',
+   
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,6 +136,8 @@ LOGIN_REDIRECT_URL = 'core:home'
 LOGOUT_REDIRECT_URL = 'core:home'
 LOGIN_URL = 'accounts:login'
 LOGOUT_URL = 'accounts:logout'
+
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
