@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.db import transaction
 from .forms import UserForm,ProfileForm
 from django.contrib import messages
@@ -88,3 +88,10 @@ def FilterView(request):
         'sexes': Sex.objects.all()
     }
     return render(request, "filter_search.html", context)
+
+def product_detail(request,pk):
+    template_name = 'product-page.html'
+    item = get_object_or_404(Item,pk=pk)
+    return render(request,template_name,{
+        'item':item,
+    })

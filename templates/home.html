@@ -47,8 +47,11 @@
         <div class="card-body">
           <h5 class="card-title">{{ item.title }}</h5>
           <p class="card-text">{{ item.short_description }}</p>
-          <span class="card-link">Price: {{ item.price }}$</span>
-          <a href="#" class="card-link">See more</a>
+          <span class="card-link"> 
+          {% if item.discount_price %}
+          <span style="color:gray;text-decoration: line-through;"><b>{{ item.price }}</b></span>
+          <span><b>{{ item.discount_price }}</b></span>{% else %}<span><b>{{ item.price }}</b></span>{% endif %}$</span>
+          <a href="{% url 'core:product_detail' pk=item.pk %}" class="card-link">See more</a>
         </div>
       </div>
     </div>
