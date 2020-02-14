@@ -32,6 +32,15 @@
           {% endfor %}
         </select>
       </div>
+      <div class="form-group col-md-4">
+        <label for="sex">Sex</label>
+        <select id="sex" class="form-control" name="sex">
+          <option selected>Choose...</option>
+          {% for s in sexes %}
+          <option value="{{ s }}">{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
   </form>

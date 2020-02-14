@@ -3,7 +3,7 @@ from django.db import transaction
 from .forms import UserForm,ProfileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Item,Profile,Category
+from .models import Item,Profile,Category,Sex
 from django.views.generic import ListView
 from django.db.models import Q, Count
 
@@ -56,10 +56,12 @@ def update_profile(request):
 def filter(request):
     qs = Item.objects.all()
     categories = Category.objects.all()
+    sexes = Sex.objects.all()
     title_contains_query = request.GET.get('title_contains')
     price_min = request.GET.get('price_min')
     price_max = request.GET.get('price_max')
     category = request.GET.get('category')
+    sex = request.GET.get('sex')
 
     if is_valid_queryparam(title_contains_query):
         qs = qs.filter(title__icontains=title_contains_query)
@@ -73,12 +75,16 @@ def filter(request):
     if is_valid_queryparam(category) and category != 'Choose...':
         qs = qs.filter(category__name=category)
 
+    if is_valid_queryparam(sex) and sex != 'Choose...':
+        qs = qs.filter(sex__name=sex)
+
     return qs
 
 def FilterView(request):
     qs = filter(request)
     context = {
         'queryset': qs,
-        'categories': Category.objects.all()
+        'categories': Category.objects.all(),
+        'sexes': Sex.objects.all()
     }
     return render(request, "filter_search.html", context)

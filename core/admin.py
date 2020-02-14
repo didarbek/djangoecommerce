@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, Category,Profile
+from .models import Item,Category,Profile,Sex
 
 # Register your models here.
 
@@ -10,3 +10,4 @@ class CategoryProfile(admin.ModelAdmin):
 
 admin.site.register(Item)
 admin.site.register(Profile)
+admin.site.register(Sex)

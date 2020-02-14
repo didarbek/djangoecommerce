@@ -30,6 +30,18 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Sex(models.Model):
+    name = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250,unique=True)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'sex'
+        verbose_name_plural = 'sexes'
+
+    def __str__(self):
+        return self.name
+
 class Item(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=1)
     title = models.CharField(max_length=50)
@@ -40,6 +52,7 @@ class Item(models.Model):
     short_description = models.CharField(max_length=100,blank=True,null=True)
     image = models.ImageField(null=True)
     published_on = models.DateTimeField(auto_now_add=True)
+    sex = models.ForeignKey(Sex,on_delete=models.CASCADE)
 
     def __str__(self):
             return self.title
