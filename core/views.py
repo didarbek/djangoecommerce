@@ -95,3 +95,14 @@ def product_detail(request,pk):
     return render(request,template_name,{
         'item':item,
     })
+
+class SearchResultsView(ListView):
+    model = Item
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('title','description')
+        object_list = Item.objects.filter(
+        Q(title__icontains=query) | Q(description__icontains=query)
+        )
+        return object_list
