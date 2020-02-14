@@ -9,13 +9,16 @@ class UserRegistrationForm(UserCreationForm):
         self.fields['username'].help_text = None
         self.fields['password1'].help_text = None
         self.fields['password2'].help_text = None
+        self.fields['email'].widget.attrs['required'] = 'required'
     class Meta:
         model = User
         fields = [
             "username",
             "password1",
             "password2",
+            "email",
         ]
+
 
 class ProfileRegistrationForm(forms.ModelForm):
     class Meta:
