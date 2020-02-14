@@ -3,16 +3,23 @@
   {% load static %}
 
   {% block content %}
-    <div class="row">
-      <aside class="col-sm-5">
-  <article class="gallery-wrap"> 
-  <div class="img-big-wrap">
-    <div> <a href="#"><img src="{{ item.image.url }}"></a></div>
-  </div> <!-- slider-product.// -->
-  </article> <!-- gallery-wrap .end// -->
-      </aside>
-      <aside class="col-sm-7">
-  <article class="card-body p-5">
+  <div class="row justify-content-between" style="width: 100%;">
+      <div class="col-1" id="list-tab" role="tablist">
+          {% for image_field in image  %}
+          <a  href="#list-home"  id="list-home-list" ><img src="{{image_field.image.url}}" class='mb-3' style="border: 1px solid #9b9b9b;" width="50" height="50"></a>
+          {% endfor %}
+
+      </div>
+
+    <div class="img-big-wrap col-5">
+      <div class="tab-content" id="nav-tabContent"> 
+       
+        {% for image_field in image  %}    
+        <img src="{{image_field.image.url}}" height="500px" width="430px" id="list-home" role="tabpanel"  aria-labelledby="list-home-list" class="tab-pane fade show active">
+        {% endfor %}
+      </div>
+    </div> <!-- slider-product.// -->
+  <div class="card-body col-6">
     <h5><span class="badge badge-pill badge-primary float-right">{{ item.category }}</span></h5>
     <h3 class="title mb-3">{{ item.title }}</h3>
   <p class="price-detail-wrap"> 
@@ -52,6 +59,8 @@
     <hr>
     <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
     <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+  </div>  
+  </div>
   {% endblock content %}
   {% block extra_scripts %}
   <!-- SCRIPTS -->

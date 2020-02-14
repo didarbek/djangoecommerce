@@ -3,10 +3,10 @@ from django.db import transaction
 from .forms import UserForm,ProfileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Item,Profile,Category,Sex
+from .models import Item,Profile,Category,Sex, Image
 from django.views.generic import ListView
 from django.db.models import Q, Count
-
+from django.views.generic import DetailView
 # Create your views here.
 
 def is_valid_queryparam(param):
@@ -92,8 +92,10 @@ def FilterView(request):
 def product_detail(request,pk):
     template_name = 'product-page.html'
     item = get_object_or_404(Item,pk=pk)
+    image  = Image.objects.all()
     return render(request,template_name,{
         'item':item,
+        'image':image,
     })
 
 class SearchResultsView(ListView):
@@ -106,3 +108,4 @@ class SearchResultsView(ListView):
         Q(title__icontains=query) | Q(description__icontains=query)
         )
         return object_list
+

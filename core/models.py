@@ -72,6 +72,13 @@ class Item(models.Model):
             'slug': self.slug
         })
 
+
+class Image(models.Model):
+    item = models.ForeignKey(Item, related_name='items_image', on_delete=models.CASCADE)
+    image = models.ImageField(null=True, blank=True)
+    def __str__(self):
+        return f"{self.item}__image___{self.image}"
+
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
