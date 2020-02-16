@@ -1,9 +1,5 @@
 from django.contrib import admin
 from .models import Item,Category,Profile,Sex,Order,Address,ItemImage
-<<<<<<< HEAD
-
-=======
->>>>>>> 9a2ce80e773389f3c1ce4730100f21ba50285e13
 
 # Register your models here.
 
