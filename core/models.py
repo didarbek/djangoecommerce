@@ -59,7 +59,7 @@ class Item(models.Model):
     image = models.ImageField(null=True)
     published_on = models.DateTimeField(auto_now_add=True)
     sex = models.ForeignKey(Sex,on_delete=models.CASCADE)
-    image_detail = models.ManyToManyField(Image)
+    image_detail = models.ManyToManyField(Image, related_name='collect_image')
 
     def __str__(self):
             return self.title
