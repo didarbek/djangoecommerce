@@ -11,7 +11,7 @@
       <div class="images" id="image"> 
           {% for image in item.itemimage_set.all %} 
            <a href="{{ image.image.url }}">
-             <img src="{{ MEDIA_URL}} {{ image.image.url }}" width="120" height="120" class="m-2"/>
+             <img src="{{ MEDIA_URL}} {{ image.image.url }}" width="180" height="180" class="m-2"/>
            </a>
           {% endfor %}
       </div>
@@ -35,30 +35,8 @@
     <dd>Worldwide</dd>
   </dl>  <!-- item-property-hor .// -->
   <hr>
-<<<<<<< HEAD
     <a href="#" class="btn btn-primary text-uppercase"> Buy now </a>
     <a href="{% url 'core:add-to-cart' pk=item.pk %}" class="btn btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
-=======
-    <div class="row">
-      <div class="col-sm-5">
-        <dl class="param param-inline">
-          <dt>Quantity: </dt>
-          <dd>
-            <select class="form-control form-control-sm" style="width:70px;">
-              <option> 1 </option>
-              <option> 2 </option>
-              <option> 3 </option>
-            </select>
-          </dd>
-        </dl>  <!-- item-property .// -->
-      </div> <!-- col.// -->
-    </div> <!-- row.// -->
-    <hr>
-    <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-    <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
-  </div>  
-  </div>
->>>>>>> multimage
   {% endblock content %}
   {% block extra_scripts %}
   <!-- SCRIPTS -->

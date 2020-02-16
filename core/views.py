@@ -107,7 +107,6 @@ class SearchResultsView(ListView):
         )
         return object_list
 
-<<<<<<< HEAD
 class OrderSummaryView(LoginRequiredMixin,View):
     def get(self,*args,**kwargs):
         try:
@@ -344,5 +343,3 @@ class PaymentView(View):
         except Exception as e:
             messages.warning    (self.request,"A serious error occurred. We have been notifed.")
             return redirect("/")
-=======
->>>>>>> multimage
