@@ -6,15 +6,11 @@ from django.contrib.auth.decorators import login_required
 from .models import Item,Profile,Category,Sex,OrderItem,Order,Address,Payment
 from django.views.generic import ListView,View
 from django.db.models import Q, Count
-<<<<<<< HEAD
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
-
-=======
 from django.views.generic import DetailView
->>>>>>> multimage
 # Create your views here.
 
 stripe.api_key = "sk_test_LV84oXAHus7lmnQAluhvBNhD007lApVItl"
