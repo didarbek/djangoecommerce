@@ -41,8 +41,8 @@ class WomenItemList(ListView):
     template_name = 'women_form.html'
     
     def get_queryset(self):
-        men_qs  = super().get_queryset()
-        return men_qs.filter(sex__name__exact='Women')
+        women_qs  = super().get_queryset()
+        return women_qs.filter(sex__name__exact='Women')
 
 
 @login_required
