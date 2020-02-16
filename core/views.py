@@ -92,10 +92,8 @@ def FilterView(request):
 def product_detail(request,pk):
     template_name = 'product-page.html'
     item = get_object_or_404(Item,pk=pk)
-    image  = Image.objects.all()
     return render(request,template_name,{
         'item':item,
-        'image':image,
     })
 
 class SearchResultsView(ListView):

@@ -42,6 +42,12 @@ class Sex(models.Model):
     def __str__(self):
         return self.name
 
+class Image(models.Model):
+    image = models.ImageField(null=True, blank=True)
+    def __str__(self):
+        return f"{self.image}"
+
+
 class Item(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=1)
     title = models.CharField(max_length=50)
@@ -53,6 +59,7 @@ class Item(models.Model):
     image = models.ImageField(null=True)
     published_on = models.DateTimeField(auto_now_add=True)
     sex = models.ForeignKey(Sex,on_delete=models.CASCADE)
+    image_detail = models.ManyToManyField(Image, related_name='collect_image')
 
     def __str__(self):
             return self.title
@@ -73,11 +80,6 @@ class Item(models.Model):
         })
 
 
-class Image(models.Model):
-    item = models.ForeignKey(Item, related_name='items_image', on_delete=models.CASCADE)
-    image = models.ImageField(null=True, blank=True)
-    def __str__(self):
-        return f"{self.item}__image___{self.image}"
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
