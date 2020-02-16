@@ -6,19 +6,10 @@
   <div class="row justify-content-between" style="width: 100%;">
       <div class="col-1" id="list-tab" role="tablist">
           {% for image_field in image  %}
-          <a  href="#list-home"  id="list-home-list" ><img src="{{image_field.image.url}}" class='mb-3' style="border: 1px solid #9b9b9b;" width="50" height="50"></a>
+          <a  href="#list-home"  id="list-home-list" ></a><img src="{{image_field.image.url}}" class='mb-3' style="border: 1px solid #9b9b9b;" width="50" height="50"></a>
           {% endfor %}
 
       </div>
-
-    <div class="img-big-wrap col-5">
-      <div class="tab-content" id="nav-tabContent"> 
-       
-        {% for image_field in image  %}    
-        <img src="{{image_field.image.url}}" height="500px" width="430px" id="list-home" role="tabpanel"  aria-labelledby="list-home-list" class="tab-pane fade show active">
-        {% endfor %}
-      </div>
-    </div> <!-- slider-product.// -->
   <div class="card-body col-6">
     <h5><span class="badge badge-pill badge-primary float-right">{{ item.category }}</span></h5>
     <h3 class="title mb-3">{{ item.title }}</h3>
