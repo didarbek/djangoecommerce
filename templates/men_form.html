@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Men{% endblock title %}
+
+{% block content %}
+
+<div class="row row-cols-1 row-cols-md-4 m-2 justify-content-center">
+    {% for item in object_list %}
+    <div class="col mb-4">
+      <div class="card h-100">
+        <img src="{{ item.image.url }}" class="card-img-top" alt="...">
+        <span class="badge badge-dark">{{ item.sex }}</span>
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text">{{ item.short_description }}</p>
+          <span class="card-link"> 
+          {% if item.discount_price %}
+          <span style="color:gray;text-decoration: line-through;"><b>{{ item.price }}</b></span>
+          <span><b>{{ item.discount_price }}</b></span>{% else %}<span><b>{{ item.price }}</b></span>{% endif %}$</span>
+          <a href="{% url 'core:product_detail' pk=item.pk %}" class="card-link">See more</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
