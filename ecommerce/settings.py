@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 #Application definition
 
 INSTALLED_APPS = [
+    'stripe',
     'django_countries',
     'accounts',
     'crispy_forms',

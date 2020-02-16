@@ -3,14 +3,17 @@ from django.db import transaction
 from .forms import UserForm,ProfileForm,CheckoutForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Item,Profile,Category,Sex,OrderItem,Order,Address
+from .models import Item,Profile,Category,Sex,OrderItem,Order,Address,Payment
 from django.views.generic import ListView,View
 from django.db.models import Q, Count
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
+import stripe
 
 # Create your views here.
+
+stripe.api_key = "sk_test_LV84oXAHus7lmnQAluhvBNhD007lApVItl"
 
 def is_valid_queryparam(param):
     return param != '' and param is not None
@@ -280,3 +283,63 @@ class CheckoutView(View):
             messages.warning(self.request, "You do not have an active order")
             return redirect("core:cart")
             
+class PaymentView(View):
+    def get(self,*args,**kwargs):
+        return render(self.request,"payment.html")
+
+    def post(self,*args,**kwargs):
+        order = Order.objects.get(user=self.request.user,ordered=False)
+        token = self.request.POST.get('stripeToken')
+        amount = int(order.get_total() * 100)
+        try:
+            charge = stripe.Charge.create(
+                amount=amount,
+                currency="usd",
+                source=token,
+            )
+
+            payment = Payment()
+            payment.stripe_charge_id = charge['id']
+            payment.user = self.request.user
+            payment.amount = order.get_total()
+            payment.save()
+
+            order_items = order.items.all()
+            order_items.update(ordered=True)
+            for item in order_items:
+                item.save()
+
+            order.ordered = True
+            order.payment = payment
+            order.save()
+            messages.success(self.request,"Your order was successful!")
+            return redirect("/")
+
+        except stripe.error.CardError as e:
+            # Since it's a decline, stripe.error.CardError will be caught
+            messages.warning(self.request,F"{e.error.message}")
+            return redirect("/")
+
+        except stripe.error.RateLimitError as e:
+            messages.warning(self.request,"Rate limit error")
+            return redirect("/")
+
+        except stripe.error.InvalidRequestError as e:
+            messages.warning(self.request,"Invalid parameters")
+            return redirect("/")
+
+        except stripe.error.AuthenticationError as e:
+            messages.warning(self.request,"Not authenticated")
+            return redirect("/")
+
+        except stripe.error.APIConnectionError as e:
+            messages.warning(self.request,"Network error")
+            return redirect("/")
+
+        except stripe.error.StripeError as e:
+            messages.warning(self.request,"Something went wrong. Your were not charged. Please try again.")
+            return redirect("/")
+
+        except Exception as e:
+            messages.warning    (self.request,"A serious error occurred. We have been notifed.")
+            return redirect("/")
