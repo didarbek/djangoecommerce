@@ -4,22 +4,16 @@
 
   {% block content %}
   <div class="row justify-content-between" style="width: 100%;">
-      <div class="col-1" id="list-tab" role="tablist">
-          {% for image_field in image  %}
-          <a  href="#list-home"  id="list-home-list" ><img src="{{image_field.image.url}}" class='mb-3' style="border: 1px solid #9b9b9b;" width="50" height="50"></a>
-          {% endfor %}
-
-      </div>
-
     <div class="img-big-wrap col-5">
-      <div class="tab-content" id="nav-tabContent"> 
-       
+      <div class="images" id="image"> 
         {% for image_field in image  %}    
-        <img src="{{image_field.image.url}}" height="500px" width="430px" id="list-home" role="tabpanel"  aria-labelledby="list-home-list" class="tab-pane fade show active">
+        <a href="{{image_field.image.url}}" id="open-image">
+        <img src="{{image_field.image.url}}" height="200px" width="200px" id="item-image" class="p-2" data-gallery="example-gallery" data-toggle="lightbox">
+      </a>
         {% endfor %}
       </div>
     </div> <!-- slider-product.// -->
-  <div class="card-body col-6">
+  <div class="card-body col-7">
     <h5><span class="badge badge-pill badge-primary float-right">{{ item.category }}</span></h5>
     <h3 class="title mb-3">{{ item.title }}</h3>
   <p class="price-detail-wrap"> 
@@ -76,6 +70,9 @@
   <script type="text/javascript">
     // Animations initialization
     new WOW().init();
-
+    $('#image a').click(function (e) {
+                e.preventDefault();
+                $(this).ekkoLightbox();
+            });
   </script>
   {% endblock extra_scripts %}
