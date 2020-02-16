@@ -26,10 +26,24 @@ class ItemList(ListView):
     paginate_by = 8
     template_name = 'home.html'
 
-    # def get_context_data(self,**kwargs):
-    #     context = super(ItemList,self).get_context_data(**kwargs)
-    #     context['slides'] = Carousel.objects.all()
-    #     return context
+class MenItemList(ListView):
+    model = Item
+    paginate_by = 8
+    template_name = 'men_form.html'
+    
+    def get_queryset(self):
+        men_qs  = super().get_queryset()
+        return men_qs.filter(sex__name__exact='Men')
+
+class WomenItemList(ListView):
+    model = Item
+    paginate_by = 8
+    template_name = 'women_form.html'
+    
+    def get_queryset(self):
+        men_qs  = super().get_queryset()
+        return men_qs.filter(sex__name__exact='Women')
+
 
 @login_required
 @transaction.atomic
