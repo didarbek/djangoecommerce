@@ -1,9 +1,6 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from .models import Item,Category,Profile,Sex,Order,Address
-=======
-from .models import Item,Category,Profile,Sex,ItemImage
->>>>>>> multimage
+from .models import Item,Category,Profile,Sex,Order,Address,ItemImage
+
 
 # Register your models here.
 
