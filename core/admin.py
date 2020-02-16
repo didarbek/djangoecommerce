@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item,Category,Profile,Sex, Image
+from .models import Item,Category,Profile,Sex,ItemImage
 
 # Register your models here.
 
@@ -15,6 +15,6 @@ class ItemAdmin(admin.ModelAdmin):
 # @admin.register(Image)
 # class ImageAdmin(admin.ModelAdmin):
 #     list_display = ('id', 'item','image')
-admin.site.register(Image)
+admin.site.register(ItemImage)
 admin.site.register(Profile)
 admin.site.register(Sex)

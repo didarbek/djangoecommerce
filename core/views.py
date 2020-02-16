@@ -3,7 +3,7 @@ from django.db import transaction
 from .forms import UserForm,ProfileForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Item,Profile,Category,Sex, Image
+from .models import Item,Profile,Category,Sex
 from django.views.generic import ListView
 from django.db.models import Q, Count
 from django.views.generic import DetailView

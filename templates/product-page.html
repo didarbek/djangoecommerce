@@ -7,11 +7,9 @@
 
     <div class="img-big-wrap col-5">
       <div class="images" id="image"> 
-   
-        <!-- <a href="{{item.image.url}}" id="open-image"> -->
-        <img src="{{ item.collect_image.url }}" height="200px" width="200px" id="item-image" class="p-2" data-gallery="example-gallery" data-toggle="lightbox">
-      <!-- </a> -->
-      
+          {% for image in item.itemimage_set.all %} 
+          <img src="{{ MEDIA_URL}} {{ image.image.url }}"/>
+          {% endfor %}
       </div>
     </div> <!-- slider-product.// -->
   <div class="card-body col-7">
