@@ -32,7 +32,7 @@
   </dl>  <!-- item-property-hor .// -->
   <hr>
     <a href="#" class="btn btn-primary text-uppercase"> Buy now </a>
-    <a href="#" class="btn btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+    <a href="{% url 'core:add-to-cart' pk=item.pk %}" class="btn btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
   {% endblock content %}
   {% block extra_scripts %}
   <!-- SCRIPTS -->
