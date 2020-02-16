@@ -1,4 +1,7 @@
 {% load static %}
+
+{% load cart_template_tags %}
+
 <style>
 
 .has-search .form-control {
@@ -51,7 +54,7 @@
           <a class="nav-link" href=""><b> Sale</b></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'core:cart' %}"><i class="fas fa-shopping-cart"></i></a>
+          <a class="nav-link" href="{% url 'core:cart' %}"><span class="badge"> {{ request.user|cart_item_count }} </span><i class="fas fa-shopping-cart"></i></a>
         </li>
         </ul>
         </div>
