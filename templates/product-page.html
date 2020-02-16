@@ -8,7 +8,9 @@
     <div class="img-big-wrap col-5">
       <div class="images" id="image"> 
           {% for image in item.itemimage_set.all %} 
-          <img src="{{ MEDIA_URL}} {{ image.image.url }}"/>
+           <a href="{{ image.image.url }}">
+             <img src="{{ MEDIA_URL}} {{ image.image.url }}" width="120" height="120" class="m-2"/>
+           </a>
           {% endfor %}
       </div>
     </div> <!-- slider-product.// -->
