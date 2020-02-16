@@ -12,9 +12,9 @@ class CategoryProfile(admin.ModelAdmin):
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('id', 'title')
 
-@admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'item','image')
-# admin.site.register(Image)
+# @admin.register(Image)
+# class ImageAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'item','image')
+admin.site.register(Image)
 admin.site.register(Profile)
 admin.site.register(Sex)
