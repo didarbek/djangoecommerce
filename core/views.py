@@ -10,7 +10,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9a2ce80e773389f3c1ce4730100f21ba50285e13
 from django.views.generic import DetailView
 # Create your views here.
 
