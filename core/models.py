@@ -41,7 +41,7 @@ class Sex(models.Model):
 
     def __str__(self):
         return self.name
-
+        
 class Item(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,default=1)
     title = models.CharField(max_length=50)
