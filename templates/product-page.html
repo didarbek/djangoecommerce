@@ -56,6 +56,9 @@
                       <hr>
                       <ul class="media-list">
                         {% for comment in comments %}
+                        {% if user == comment.user %}
+                        <a style="color: red;" class="float-right" href="{% url 'core:comment_delete' pk=comment.pk %}"><span class="fas fa-trash"></span></a>
+                        {% endif %}
                           <li class="media">
                               <a href="#" class="pull-left">
                                   <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">

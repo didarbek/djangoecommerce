@@ -3,7 +3,7 @@ from django.db import transaction
 from .forms import UserForm,ProfileForm,CheckoutForm,CommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Item,Profile,Category,Sex,OrderItem,Order,Address,Payment
+from .models import Item,Profile,Category,Sex,OrderItem,Order,Address,Payment,Comment
 from django.views.generic import ListView,View
 from django.db.models import Q, Count
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -11,7 +11,7 @@ from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
 from django.views.generic import DetailView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,Http404
 
 # Create your views here.
 
@@ -412,3 +412,9 @@ class AccessoriesView(ListView):
     def get_queryset(self):
         accessories_qs  = super().get_queryset()
         return accessories_qs.filter(category__name='Accessories')
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('core:product_detail', pk=comment.item.pk)
