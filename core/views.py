@@ -369,3 +369,30 @@ class PaymentView(View):
         except Exception as e:
             messages.warning    (self.request,"A serious error occurred. We have been notifed.")
             return redirect("/")
+
+class ShoesView(ListView):
+    model = Item
+    template_name = 'shoes.html'
+    paginate_by = 8
+
+    def get_queryset(self):
+        shoes_qs  = super().get_queryset()
+        return shoes_qs.filter(category__name='Shoes')
+
+class ClothesView(ListView):
+    model = Item
+    template_name = 'clothes.html'
+    paginate_by = 8
+
+    def get_queryset(self):
+        clothes_qs  = super().get_queryset()
+        return clothes_qs.filter(category__name='Clothes')
+
+class AccessoriesView(ListView):
+    model = Item
+    template_name = 'accessories.html'
+    paginate_by = 8
+
+    def get_queryset(self):
+        accessories_qs  = super().get_queryset()
+        return accessories_qs.filter(category__name='Accessories')
