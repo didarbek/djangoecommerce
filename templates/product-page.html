@@ -1,13 +1,18 @@
-  {% extends 'base.html' %}
+{% extends 'base.html' %}
 
-  {% load static %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% load humanize %}
 
 {% block title %}Detail{% endblock title %}
 
-  {% block content %}
+{% block content %}
+  <link rel="stylesheet" href="{% static 'css/comment.css' %}">
   <div class="row justify-content-between" style="width: 100%;">
-
     <div class="img-big-wrap col-5">
+      <img src="{{ item.image.url }}">
       <div class="images" id="image"> 
           {% for image in item.itemimage_set.all %} 
            <a href="{{ image.image.url }}">
@@ -37,6 +42,38 @@
   <hr>
     <a href="#" class="btn btn-primary text-uppercase"> Buy now </a>
     <a href="{% url 'core:add-to-cart' pk=item.pk %}" class="btn btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+<hr>
+          <div class="comment-wrapper">
+              <div class="panel panel-info">
+                  <div class="panel-body">
+                    <form method="POST">
+                      {{ comment_form|crispy }}
+                      {% csrf_token %}
+                      <br>
+                      <input type="submit" value="Post" class="btn btn-info pull-right">
+                      </form>
+                      <div class="clearfix"></div>
+                      <hr>
+                      <ul class="media-list">
+                        {% for comment in comments %}
+                          <li class="media">
+                              <a href="#" class="pull-left">
+                                  <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                              </a>
+                              <div class="media-body">
+                                  <span class="text-muted pull-right">
+                                      <small class="text-muted">{{ comment.created_on|naturaltime }}</small>
+                                  </span>
+                                  <strong class="text-success">Posted by {{ user.username }}</strong>
+                                  <p>{{ comment.body }}</p>
+                              </div>
+                          </li>
+                          {% endfor %}
+                      </ul>
+                  </div>
+              </div>
+          </div>
+
   {% endblock content %}
   {% block extra_scripts %}
   <!-- SCRIPTS -->

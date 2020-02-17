@@ -52,7 +52,7 @@
     {% for item in object_list %}
     <div class="col mb-4">
       <div class="card h-100">
-        <img src="{{ item.image.url }}" class="card-img-top" alt="...">
+        <a href="{% url 'core:product_detail' pk=item.pk %}"><img src="{{ item.image.url }}" class="card-img-top" alt="..."></a>
         <span class="badge badge-dark">{{ item.sex }}</span>
         <div class="card-body">
           <h5 class="card-title">{{ item.title }}</h5>

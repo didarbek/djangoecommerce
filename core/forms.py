@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile,Comment
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
@@ -30,3 +30,7 @@ class CheckoutForm(forms.Form):
     use_default_shipping = forms.BooleanField(required=False)
     payment_option = forms.ChoiceField(widget=forms.RadioSelect, choices=PAYMENT_CHOICES)
     
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name','body',)

@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.db import transaction
-from .forms import UserForm,ProfileForm,CheckoutForm
+from .forms import UserForm,ProfileForm,CheckoutForm,CommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Item,Profile,Category,Sex,OrderItem,Order,Address,Payment
@@ -11,6 +11,8 @@ from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
 from django.views.generic import DetailView
+from django.http import HttpResponseRedirect
+
 # Create your views here.
 
 stripe.api_key = "sk_test_LV84oXAHus7lmnQAluhvBNhD007lApVItl"
@@ -114,8 +116,22 @@ def FilterView(request):
 def product_detail(request,pk):
     template_name = 'product-page.html'
     item = get_object_or_404(Item,pk=pk)
+    comments = item.comments.filter(active=True)
+    new_comment = None
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.item = item
+            new_comment.save()    
+            return HttpResponseRedirect(item.get_absolute_url())
+    else:
+        comment_form = CommentForm()
     return render(request,template_name,{
         'item':item,
+        'comments':comments,
+        'new_comment':new_comment,
+        'comment_form':comment_form,
     })
 
 class SearchResultsView(ListView):
