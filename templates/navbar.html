@@ -51,7 +51,7 @@
           <a class="nav-link" href="{% url 'core:women_form' %}"><b>Women</b></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href=""><b> Sale</b></a>
+          <a class="nav-link" href="{% url 'core:sale_form' %}"><b> Sale</b></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'core:cart' %}"><span class="badge"> {{ request.user|cart_item_count }} </span><i class="fas fa-shopping-cart"></i></a>

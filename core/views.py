@@ -44,6 +44,14 @@ class WomenItemList(ListView):
         women_qs  = super().get_queryset()
         return women_qs.filter(sex__name__exact='Women')
 
+class SaleItemList(ListView):
+    model = Item  
+    paginate_by = 8
+    template_name = 'sale_form.html'
+
+    def get_queryset(self):
+        sale_qs  = super().get_queryset()
+        return sale_qs.filter(discount_price__isnull=False)
 
 @login_required
 @transaction.atomic
