@@ -129,9 +129,11 @@ class Address(models.Model):
     country = CountryField(multiple=False)
     zip = models.CharField(max_length=100)
     default = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=100,default=False)
+    last_name = models.CharField(max_length=100,default=False)
 
     def __str__(self):
-        return self.user.username
+        return '{} {} {}'.format(self.user.username,self.first_name,self.last_name)
 
     class Meta:
         verbose_name_plural = 'addresses'
