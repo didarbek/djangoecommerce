@@ -43,6 +43,7 @@
     <a href="#" class="btn btn-primary text-uppercase"> Buy now </a>
     <a href="{% url 'core:add-to-cart' pk=item.pk %}" class="btn btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
 <hr>
+<p class="float-right">Reviews: {{ comments.count }}</p>
           <div class="comment-wrapper">
               <div class="panel panel-info">
                   <div class="panel-body">
@@ -56,9 +57,7 @@
                       <hr>
                       <ul class="media-list">
                         {% for comment in comments %}
-                        {% if user == comment.user %}
                         <a style="color: red;" class="float-right" href="{% url 'core:comment_delete' pk=comment.pk %}"><span class="fas fa-trash"></span></a>
-                        {% endif %}
                           <li class="media">
                               <a href="#" class="pull-left">
                                   <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">

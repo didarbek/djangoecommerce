@@ -22,5 +22,5 @@ urlpatterns = [
     path('account_update/',views.update_profile,name='account_update'),
     path('search/',views.SearchResultsView.as_view(),name='search_results'),
     path('filter_search/',views.FilterView, name='filter_search'),
-    path('comment/<int:pk>/delete/',views.comment_remove,name='comment_delete'),
+    path('comment/<int:pk>/delete/',views.delete_own_comment,name='comment_delete'),
 ]

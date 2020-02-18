@@ -44,6 +44,16 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'core:category_accessories' %}">Accessories</a>
       </li>
+      <div class="btn-group">
+        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sex
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'core:men_form' %}">Men</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'core:women_form' %}">Women</a>
+        </div>
+      </div>
     </ul>
   </div>
 </nav>
